@@ -65,15 +65,14 @@ services:
       - ./auth-service/.env
     environment:
       - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_auth?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=root
+      - DB_PASSWORD=Aryan@120
       - EUREKA_URL=http://discovery-service:8761/eureka/
       - RABBITMQ_HOST=parkease-rabbitmq
       - ADMIN_SERVER_URL=http://admin-server:9090
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-      - ADMIN_EMAIL=${ADMIN_EMAIL}
-      - ENABLE_DEFAULT_ADMIN=${ENABLE_DEFAULT_ADMIN:-true}
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
+      - ENABLE_DEFAULT_ADMIN=true
     depends_on:
       discovery-service:
         condition: service_healthy
@@ -91,12 +90,12 @@ services:
       - ./parkinglot-service/.env
     environment:
       - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_parkinglot?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=root
+      - DB_PASSWORD=Aryan@120
       - EUREKA_URL=http://discovery-service:8761/eureka/
       - ADMIN_SERVER_URL=http://admin-server:9090
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
     depends_on:
       discovery-service:
         condition: service_healthy
@@ -114,12 +113,12 @@ services:
       - ./parkingspot-service/.env
     environment:
       - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_spot?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=root
+      - DB_PASSWORD=Aryan@120
       - EUREKA_URL=http://discovery-service:8761/eureka/
       - ADMIN_SERVER_URL=http://admin-server:9090
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
     depends_on:
       discovery-service:
         condition: service_healthy
@@ -137,12 +136,12 @@ services:
       - ./vehicle-service/.env
     environment:
       - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_vehicle?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=root
+      - DB_PASSWORD=Aryan@120
       - EUREKA_URL=http://discovery-service:8761/eureka/
       - ADMIN_SERVER_URL=http://admin-server:9090
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
     depends_on:
       discovery-service:
         condition: service_healthy
@@ -160,13 +159,13 @@ services:
       - ./booking-service/.env
     environment:
       - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_booking?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=root
+      - DB_PASSWORD=Aryan@120
       - EUREKA_URL=http://discovery-service:8761/eureka/
       - RABBITMQ_HOST=parkease-rabbitmq
       - ADMIN_SERVER_URL=http://admin-server:9090
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
     depends_on:
       discovery-service:
         condition: service_healthy
@@ -184,13 +183,13 @@ services:
       - ./payment-service/.env
     environment:
       - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_payment?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=root
+      - DB_PASSWORD=Aryan@120
       - EUREKA_URL=http://discovery-service:8761/eureka/
       - RABBITMQ_HOST=parkease-rabbitmq
       - ADMIN_SERVER_URL=http://admin-server:9090
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
     depends_on:
       discovery-service:
         condition: service_healthy
@@ -208,13 +207,13 @@ services:
       - ./notification-service/.env
     environment:
       - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_notification?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=root
+      - DB_PASSWORD=Aryan@120
       - EUREKA_URL=http://discovery-service:8761/eureka/
       - RABBITMQ_HOST=parkease-rabbitmq
       - ADMIN_SERVER_URL=http://admin-server:9090
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
     depends_on:
       discovery-service:
         condition: service_healthy
@@ -232,12 +231,12 @@ services:
       - ./analytics-service/.env
     environment:
       - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_analytics?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=root
+      - DB_PASSWORD=Aryan@120
       - EUREKA_URL=http://discovery-service:8761/eureka/
       - ADMIN_SERVER_URL=http://admin-server:9090
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
     depends_on:
       discovery-service:
         condition: service_healthy
@@ -282,8 +281,8 @@ services:
     env_file:
       - ./admin-server/.env
     environment:
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
     depends_on:
       discovery-service:
         condition: service_healthy
