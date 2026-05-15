@@ -1,0 +1,778 @@
+2026-05-15T11:11:34.792+05:30  INFO 16908 --- [booking-service] [main] c.p.booking.BookingServiceApplication    : Starting BookingServiceApplication using Java 18.0.2 with PID 16908 (C:\Users\Hp\Desktop\Parkease-Backend\booking-service\target\classes started by Hp in C:\Users\Hp\Desktop\Parkease-Backend\booking-service)
+2026-05-15T11:11:34.802+05:30 DEBUG 16908 --- [booking-service] [main] c.p.booking.BookingServiceApplication    : Running with Spring Boot v3.2.0, Spring v6.1.1
+2026-05-15T11:11:34.803+05:30  INFO 16908 --- [booking-service] [main] c.p.booking.BookingServiceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-05-15T11:11:41.472+05:30  INFO 16908 --- [booking-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-15T11:11:41.881+05:30  INFO 16908 --- [booking-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 388 ms. Found 1 JPA repository interface.
+2026-05-15T11:11:43.291+05:30  INFO 16908 --- [booking-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=b10bff0e-d2b4-39ad-863b-6812fbf46047
+2026-05-15T11:11:44.643+05:30  WARN 16908 --- [booking-service] [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-05-15T11:11:44.666+05:30  WARN 16908 --- [booking-service] [main] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-05-15T11:11:45.997+05:30  INFO 16908 --- [booking-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8085 (http)
+2026-05-15T11:11:46.032+05:30  INFO 16908 --- [booking-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-15T11:11:46.032+05:30  INFO 16908 --- [booking-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2026-05-15T11:11:46.323+05:30  INFO 16908 --- [booking-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-15T11:11:46.323+05:30  INFO 16908 --- [booking-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 11176 ms
+2026-05-15T11:11:47.792+05:30 DEBUG 16908 --- [booking-service] [main] c.p.booking.security.JwtAuthFilter       : Filter 'jwtAuthFilter' configured for use
+2026-05-15T11:11:48.586+05:30  INFO 16908 --- [booking-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-15T11:11:48.870+05:30  INFO 16908 --- [booking-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2026-05-15T11:11:49.007+05:30  INFO 16908 --- [booking-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-15T11:11:49.945+05:30  INFO 16908 --- [booking-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-15T11:11:50.115+05:30  INFO 16908 --- [booking-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-15T11:11:50.702+05:30  INFO 16908 --- [booking-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@470866d1
+2026-05-15T11:11:50.711+05:30  INFO 16908 --- [booking-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-15T11:11:50.903+05:30  WARN 16908 --- [booking-service] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-15T11:11:53.688+05:30  INFO 16908 --- [booking-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-15T11:11:53.873+05:30  INFO 16908 --- [booking-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-15T11:11:55.973+05:30  INFO 16908 --- [booking-service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-15T11:11:58.426+05:30  WARN 16908 --- [booking-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-15T11:12:00.698+05:30  INFO 16908 --- [booking-service] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-15T11:12:00.895+05:30  INFO 16908 --- [booking-service] [main] o.s.c.openfeign.FeignClientFactoryBean   : For 'PARKINGSPOT-SERVICE' URL not provided. Will try picking an instance via load-balancing.
+2026-05-15T11:12:01.991+05:30  INFO 16908 --- [booking-service] [main] o.s.c.openfeign.FeignClientFactoryBean   : For 'PARKINGLOT-SERVICE' URL not provided. Will try picking an instance via load-balancing.
+2026-05-15T11:12:02.084+05:30  INFO 16908 --- [booking-service] [main] o.s.c.openfeign.FeignClientFactoryBean   : For 'VEHICLE-SERVICE' URL not provided. Will try picking an instance via load-balancing.
+2026-05-15T11:12:06.959+05:30  INFO 16908 --- [booking-service] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 25 endpoint(s) beneath base path '/actuator'
+2026-05-15T11:12:07.381+05:30  INFO 16908 --- [booking-service] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@56c763, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@13d85ddb, org.springframework.security.web.context.SecurityContextHolderFilter@6d8e8a06, org.springframework.security.web.header.HeaderWriterFilter@36f1262c, org.springframework.web.filter.CorsFilter@11f63b10, org.springframework.security.web.authentication.logout.LogoutFilter@41c9df5c, com.parkease.booking.security.JwtAuthFilter@18f4086e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5c5295e4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@10958e5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c8f756e, org.springframework.security.web.session.SessionManagementFilter@6ae194ad, org.springframework.security.web.access.ExceptionTranslationFilter@4e542ef4, org.springframework.security.web.access.intercept.AuthorizationFilter@34042639]
+2026-05-15T11:12:10.924+05:30  INFO 16908 --- [booking-service] [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2026-05-15T11:12:12.166+05:30  INFO 16908 --- [booking-service] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-15T11:12:12.321+05:30  WARN 16908 --- [booking-service] [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-15T11:12:12.555+05:30  INFO 16908 --- [booking-service] [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-05-15T11:12:12.628+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-05-15T11:12:12.637+05:30  INFO 16908 --- [booking-service] [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-15T11:12:12.675+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-05-15T11:12:12.675+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-05-15T11:12:12.675+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-05-15T11:12:12.675+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-05-15T11:12:12.675+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-05-15T11:12:12.675+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-05-15T11:12:12.675+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-05-15T11:12:13.015+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-05-15T11:12:13.017+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-05-15T11:12:13.019+05:30  INFO 16908 --- [booking-service] [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-05-15T11:12:13.026+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1778823733024 with initial instances count: 0
+2026-05-15T11:12:13.046+05:30  INFO 16908 --- [booking-service] [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application BOOKING-SERVICE with eureka with status UP
+2026-05-15T11:12:13.047+05:30  INFO 16908 --- [booking-service] [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1778823733047, current=UP, previous=STARTING]
+2026-05-15T11:12:13.048+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKING-SERVICE/localhost:booking-service:8085: registering service...
+2026-05-15T11:12:13.084+05:30  INFO 16908 --- [booking-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8085 (http) with context path ''
+2026-05-15T11:12:13.085+05:30  INFO 16908 --- [booking-service] [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8085
+2026-05-15T11:12:13.108+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKING-SERVICE/localhost:booking-service:8085 - registration status: 204
+2026-05-15T11:12:14.301+05:30  INFO 16908 --- [booking-service] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-15T11:12:14.321+05:30  INFO 16908 --- [booking-service] [main] c.p.booking.BookingServiceApplication    : Started BookingServiceApplication in 42.978 seconds (process running for 45.341)
+2026-05-15T11:12:14.457+05:30  INFO 16908 --- [booking-service] [registrationTask1] d.c.b.a.c.r.ApplicationRegistrator       : Application registered itself as ed67259d84e5
+2026-05-15T11:12:14.519+05:30 DEBUG 16908 --- [booking-service] [scheduling-1] c.p.b.service.ExpiredBookingScheduler    : Scheduler: no expired bookings found
+2026-05-15T11:12:14.521+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-15T11:12:14.521+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-15T11:12:14.524+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-05-15T11:12:14.547+05:30  WARN 16908 --- [booking-service] [http-nio-8085-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/actuator/health' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-05-15T11:12:14.564+05:30  WARN 16908 --- [booking-service] [http-nio-8085-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/actuator/health' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-05-15T11:12:14.603+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-1] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2026-05-15T11:12:14.701+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-1] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#5c7712f0:0/SimpleConnection@5bdfd8d2 [delegate=amqp://guest@127.0.0.1:5672/, localPort=61164]
+2026-05-15T11:12:43.021+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-05-15T11:12:43.022+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-05-15T11:12:43.022+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-05-15T11:12:43.022+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-05-15T11:12:43.022+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-05-15T11:12:43.022+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application version is -1: false
+2026-05-15T11:12:43.022+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-05-15T11:12:43.042+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-05-15T11:13:20.669+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-8] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:13:23.032+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-9] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:13:37.750+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-1] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:17:12.684+05:30  INFO 16908 --- [booking-service] [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-15T11:17:14.531+05:30 DEBUG 16908 --- [booking-service] [scheduling-1] c.p.b.service.ExpiredBookingScheduler    : Scheduler: no expired bookings found
+2026-05-15T11:22:12.697+05:30  INFO 16908 --- [booking-service] [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-15T11:22:14.647+05:30 DEBUG 16908 --- [booking-service] [scheduling-1] c.p.b.service.ExpiredBookingScheduler    : Scheduler: no expired bookings found
+2026-05-15T11:24:34.976+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-3] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:25:28.730+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-2] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:25:40.015+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-7] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:25:40.024+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-7] c.p.b.controller.BookingController       : GET /slots/35/drive-in
+2026-05-15T11:25:47.347+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-9] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:25:47.599+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-9] c.p.b.controller.BookingController       : POST /api/bookings type=DRIVE_IN driver=aryanborkar03@gmail.com spot=351
+2026-05-15T11:25:47.602+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-9] c.p.booking.service.BookingServiceImpl   : Creating DRIVE_IN booking for driver=aryanborkar03@gmail.com spot=351
+2026-05-15T11:25:48.007+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-9] c.p.booking.service.BookingServiceImpl   : Booking #101 created (type=DRIVE_IN status=ACTIVE)
+2026-05-15T11:25:48.076+05:30  WARN 16908 --- [booking-service] [http-nio-8085-exec-9] .b.c.LotServiceClient$LotServiceFallback : ⚡ Circuit Breaker OPEN — ParkingLot service is down. Could not decrement spot count for lotId: 35
+2026-05-15T11:25:48.163+05:30  WARN 16908 --- [booking-service] [http-nio-8085-exec-9] .c.SpotServiceClient$SpotServiceFallback : ⚡ Circuit Breaker OPEN — ParkingSpot service is down. Could not reserve spotId: 351
+2026-05-15T11:25:48.197+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-9] c.p.b.messaging.NotificationPublisher    : Published [CHECKIN] notification event for: aryanborkar03@gmail.com
+2026-05-15T11:25:48.253+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-10] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:25:48.256+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-10] c.p.b.controller.BookingController       : GET /slots/35/drive-in
+2026-05-15T11:25:49.892+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-1] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:25:51.763+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-2] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:25:51.770+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-2] c.p.b.controller.BookingController       : PUT /api/bookings/101/checkout driver=aryanborkar03@gmail.com
+2026-05-15T11:25:51.773+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-2] c.p.booking.service.BookingServiceImpl   : Check-out booking=101 driver=aryanborkar03@gmail.com
+2026-05-15T11:25:51.811+05:30  INFO 16908 --- [booking-service] [http-nio-8085-exec-2] c.p.booking.service.BookingServiceImpl   : Booking #101 checked out. Fare: Rs.50.0
+2026-05-15T11:25:51.828+05:30  WARN 16908 --- [booking-service] [http-nio-8085-exec-2] .c.SpotServiceClient$SpotServiceFallback : ⚡ Circuit Breaker OPEN — ParkingSpot service is down. Could not release spotId: 351
+2026-05-15T11:25:51.845+05:30  WARN 16908 --- [booking-service] [http-nio-8085-exec-2] .b.c.LotServiceClient$LotServiceFallback : ⚡ Circuit Breaker OPEN — ParkingLot service is down. Could not increment spot count for lotId: 35
+2026-05-15T11:25:51.849+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-2] c.p.b.messaging.NotificationPublisher    : Published [CHECKOUT] notification event for: aryanborkar03@gmail.com
+2026-05-15T11:25:52.011+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-3] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:25:53.436+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-4] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:25:57.246+05:30 DEBUG 16908 --- [booking-service] [http-nio-8085-exec-6] c.p.booking.security.JwtAuthFilter       : Authenticated: aryanborkar03@gmail.com [ROLE_DRIVER]
+2026-05-15T11:27:12.707+05:30  INFO 16908 --- [booking-service] [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-15T11:27:14.655+05:30 DEBUG 16908 --- [booking-service] [scheduling-1] c.p.b.service.ExpiredBookingScheduler    : Scheduler: no expired bookings found
+2026-05-15T11:27:59.770+05:30  INFO 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-05-15T11:27:59.782+05:30  INFO 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application BOOKING-SERVICE with eureka with status DOWN
+2026-05-15T11:27:59.784+05:30  INFO 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1778824679784, current=DOWN, previous=UP]
+2026-05-15T11:27:59.784+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKING-SERVICE/localhost:booking-service:8085: registering service...
+2026-05-15T11:27:59.820+05:30  INFO 16908 --- [booking-service] [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKING-SERVICE/localhost:booking-service:8085 - registration status: 204
+2026-05-15T11:27:59.949+05:30  WARN 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] s.c.a.AnnotationConfigApplicationContext : Exception thrown from ApplicationListener handling ContextClosedEvent
+
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'registrationListener': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1173) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:392) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:354) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:237) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:168) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:149) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:445) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:451) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1069) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:113) ~[spring-cloud-context-4.1.2.jar:4.1.2]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1200) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1125) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1086) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160) ~[spring-boot-3.2.0.jar:3.2.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:72) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:262) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:117) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:54) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:237) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252) ~[na:na]
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:811) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-05-15T11:27:59.965+05:30  WARN 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] s.c.a.AnnotationConfigApplicationContext : Exception thrown from ApplicationListener handling ContextClosedEvent
+
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'registrationListener': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1173) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:392) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:354) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:237) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:168) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:149) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:445) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:451) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1069) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:113) ~[spring-cloud-context-4.1.2.jar:4.1.2]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1200) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1125) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1086) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160) ~[spring-boot-3.2.0.jar:3.2.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:72) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:262) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:117) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:54) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:237) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252) ~[na:na]
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:811) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-05-15T11:27:59.968+05:30  WARN 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] s.c.a.AnnotationConfigApplicationContext : Exception thrown from ApplicationListener handling ContextClosedEvent
+
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'registrationListener': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1173) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:392) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:354) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:237) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:168) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:149) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:445) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:451) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1069) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:113) ~[spring-cloud-context-4.1.2.jar:4.1.2]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1200) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1125) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1086) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160) ~[spring-boot-3.2.0.jar:3.2.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:72) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:262) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:117) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:54) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:237) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252) ~[na:na]
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:811) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-05-15T11:27:59.978+05:30  WARN 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] s.c.a.AnnotationConfigApplicationContext : Exception thrown from ApplicationListener handling ContextClosedEvent
+
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'registrationListener': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1173) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:392) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:354) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:237) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:168) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:149) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:445) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:451) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1069) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:113) ~[spring-cloud-context-4.1.2.jar:4.1.2]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1200) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1125) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1086) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160) ~[spring-boot-3.2.0.jar:3.2.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:72) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:262) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:117) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:54) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:237) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252) ~[na:na]
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:811) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-05-15T11:27:59.981+05:30  WARN 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] s.c.a.AnnotationConfigApplicationContext : Exception thrown from ApplicationListener handling ContextClosedEvent
+
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'registrationListener': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1173) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:392) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:354) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:237) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:168) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:149) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:445) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:451) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1069) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:113) ~[spring-cloud-context-4.1.2.jar:4.1.2]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1200) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1125) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1086) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160) ~[spring-boot-3.2.0.jar:3.2.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:72) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:262) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:117) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:54) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:237) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252) ~[na:na]
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:811) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-05-15T11:27:59.984+05:30  WARN 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] s.c.a.AnnotationConfigApplicationContext : Exception thrown from ApplicationListener handling ContextClosedEvent
+
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'registrationListener': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1173) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:392) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:354) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:237) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:168) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:149) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:445) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:451) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1069) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:113) ~[spring-cloud-context-4.1.2.jar:4.1.2]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1200) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1125) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1086) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160) ~[spring-boot-3.2.0.jar:3.2.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:72) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:262) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:117) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:54) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:237) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252) ~[na:na]
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:811) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-05-15T11:27:59.985+05:30  INFO 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-15T11:28:00.006+05:30  INFO 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-15T11:28:00.030+05:30  INFO 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-15T11:28:00.033+05:30  INFO 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2026-05-15T11:28:03.047+05:30  INFO 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2026-05-15T11:28:03.055+05:30  INFO 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=Connection pool shut down stacktrace=java.lang.IllegalStateException: Connection pool shut down
+	at org.apache.hc.core5.util.Asserts.check(Asserts.java:38)
+	at org.apache.hc.core5.pool.StrictConnPool.lease(StrictConnPool.java:176)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.lease(PoolingHttpClientConnectionManager.java:298)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.acquireEndpoint(InternalExecRuntime.java:103)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:125)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:95)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:101)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$0(RestTemplateTransportClientFactory.java:143)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:87)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:71)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:879)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:781)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:663)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:87)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:916)
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:892)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:202)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:195)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:389)
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1200)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1193)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1125)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1086)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037)
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:262)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:117)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:54)
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:237)
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138)
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252)
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:811)
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+2026-05-15T11:28:03.055+05:30  WARN 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: Connection pool shut down
+2026-05-15T11:28:03.068+05:30  INFO 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=Connection pool shut down stacktrace=java.lang.IllegalStateException: Connection pool shut down
+	at org.apache.hc.core5.util.Asserts.check(Asserts.java:38)
+	at org.apache.hc.core5.pool.StrictConnPool.lease(StrictConnPool.java:176)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.lease(PoolingHttpClientConnectionManager.java:298)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.acquireEndpoint(InternalExecRuntime.java:103)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:125)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:95)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:101)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$0(RestTemplateTransportClientFactory.java:143)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:87)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:71)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:879)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:781)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:663)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:87)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:916)
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:892)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:202)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:195)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:389)
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1200)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1193)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1125)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1086)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037)
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:262)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:117)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:54)
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:237)
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138)
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252)
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:811)
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+2026-05-15T11:28:03.068+05:30  WARN 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: Connection pool shut down
+2026-05-15T11:28:03.068+05:30 ERROR 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKING-SERVICE/localhost:booking-service:8085 - de-registration failedCannot execute request on any known server
+
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.2.jar:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.2.jar:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.2.jar:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77) ~[eureka-client-2.0.2.jar:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.2.jar:2.0.2]
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:916) ~[eureka-client-2.0.2.jar:2.0.2]
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:892) ~[eureka-client-2.0.2.jar:2.0.2]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:202) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:195) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:389) ~[spring-cloud-context-4.1.2.jar:4.1.2]
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136) ~[spring-cloud-context-4.1.2.jar:4.1.2]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1200) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1125) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1086) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1037) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160) ~[spring-boot-3.2.0.jar:3.2.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:72) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:262) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:117) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:54) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:237) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252) ~[na:na]
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:811) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-05-15T11:28:03.074+05:30  INFO 16908 --- [booking-service] [RMI TCP Connection(33)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
