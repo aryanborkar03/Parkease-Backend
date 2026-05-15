@@ -1,0 +1,130 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      actuator:
+        verbose:
+          enabled: true
+      # Deduplicate CORS headers — prevents duplicate Access-Control-Allow-Origin
+      # when a downstream service also emits CORS headers
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin RETAIN_FIRST
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:5173"
+            allowedMethods:
+              - "GET"
+              - "POST"
+              - "PUT"
+              - "DELETE"
+              - "OPTIONS"
+            allowedHeaders:
+              - "*"
+            exposedHeaders:
+              - "Content-Disposition"
+              - "Content-Type"
+              - "Content-Length"
+            allowCredentials: true
+      routes:
+        # AUTH SERVICE
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/**
+            
+        # BOOKING SERVICE
+        - id: booking-service
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/bookings/**
+            
+        # PARKING LOT SERVICE
+        - id: parkinglot-service
+          uri: lb://parkinglot-service
+          predicates:
+            - Path=/api/lots/**
+            
+        # PARKING SPOT SERVICE
+        - id: parkingspot-service
+          uri: lb://parkingspot-service
+          predicates:
+            - Path=/api/spots/**
+            
+        # PAYMENT SERVICE
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/payments/**
+
+        # PASS SERVICE (part of payment-service, separate path prefix)
+        - id: pass-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/pass/**
+            
+        # VEHICLE SERVICE
+        - id: vehicle-service
+          uri: lb://vehicle-service
+          predicates:
+            - Path=/api/vehicles/**
+            
+        # NOTIFICATION SERVICE
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notifications/**
+            
+        # ANALYTICS SERVICE
+        - id: analytics-service
+          uri: lb://analytics-service
+          predicates:
+            - Path=/api/analytics/**
+            
+        # ADMIN ENDPOINTS INSIDE AUTH SERVICE
+        - id: admin-auth-routes
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/admin/**
+            
+        # OAUTH2 ROUTES
+        - id: oauth2-auth-routes
+          uri: lb://auth-service
+          predicates:
+            - Path=/oauth2/**,/login/oauth2/**
+
+  boot:
+    admin:
+      client:
+        url: ${ADMIN_SERVER_URL:http://localhost:9090}
+        username: ${ADMIN_USERNAME}
+        password: ${ADMIN_PASSWORD}
+        instance:
+          prefer-ip: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /actuator/health
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
