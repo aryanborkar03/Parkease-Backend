@@ -1,0 +1,7 @@
+/.metadata/
+.env
+*/.env
+# Root-level .env used by Docker Compose variable substitution
+/.env
+# Allow the committed template
+!/.env.example

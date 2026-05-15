@@ -1,0 +1,299 @@
+version: '3.8'
+
+services:
+
+  # ──────────────────────────────────────────────
+  #  INFRASTRUCTURE — start first
+  # ──────────────────────────────────────────────
+
+  parkease-rabbitmq:
+    image: rabbitmq:3-management
+    container_name: parkease-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - parkease-network
+
+  # ──────────────────────────────────────────────
+  #  DISCOVERY — starts after infrastructure
+  # ──────────────────────────────────────────────
+
+  discovery-service:
+    build: ./discovery-service
+    container_name: discovery-service
+    ports:
+      - "8761:8761"
+    env_file:
+      - ./discovery-service/.env
+    environment:
+      - EUREKA_URL=http://discovery-service:8761/eureka/
+      - ADMIN_SERVER_URL=http://admin-server:9090
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
+    depends_on:
+      parkease-rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8761/actuator/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+    networks:
+      - parkease-network
+
+  # ──────────────────────────────────────────────
+  #  SPRING BOOT SERVICES — start after discovery
+  # ──────────────────────────────────────────────
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    ports:
+      - "8081:8081"
+    env_file:
+      - ./auth-service/.env
+    environment:
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_auth?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - EUREKA_URL=http://discovery-service:8761/eureka/
+      - RABBITMQ_HOST=parkease-rabbitmq
+      - ADMIN_SERVER_URL=http://admin-server:9090
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ENABLE_DEFAULT_ADMIN=${ENABLE_DEFAULT_ADMIN:-true}
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      parkease-rabbitmq:
+        condition: service_healthy
+    networks:
+      - parkease-network
+
+  parkinglot-service:
+    build: ./parkinglot-service
+    container_name: parkinglot-service
+    ports:
+      - "8082:8082"
+    env_file:
+      - ./parkinglot-service/.env
+    environment:
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_parkinglot?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - EUREKA_URL=http://discovery-service:8761/eureka/
+      - ADMIN_SERVER_URL=http://admin-server:9090
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      parkease-rabbitmq:
+        condition: service_healthy
+    networks:
+      - parkease-network
+
+  parkingspot-service:
+    build: ./parkingspot-service
+    container_name: parkingspot-service
+    ports:
+      - "8083:8083"
+    env_file:
+      - ./parkingspot-service/.env
+    environment:
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_spot?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - EUREKA_URL=http://discovery-service:8761/eureka/
+      - ADMIN_SERVER_URL=http://admin-server:9090
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      parkease-rabbitmq:
+        condition: service_healthy
+    networks:
+      - parkease-network
+
+  vehicle-service:
+    build: ./vehicle-service
+    container_name: vehicle-service
+    ports:
+      - "8084:8084"
+    env_file:
+      - ./vehicle-service/.env
+    environment:
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_vehicle?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - EUREKA_URL=http://discovery-service:8761/eureka/
+      - ADMIN_SERVER_URL=http://admin-server:9090
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      parkease-rabbitmq:
+        condition: service_healthy
+    networks:
+      - parkease-network
+
+  booking-service:
+    build: ./booking-service
+    container_name: booking-service
+    ports:
+      - "8085:8085"
+    env_file:
+      - ./booking-service/.env
+    environment:
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_booking?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - EUREKA_URL=http://discovery-service:8761/eureka/
+      - RABBITMQ_HOST=parkease-rabbitmq
+      - ADMIN_SERVER_URL=http://admin-server:9090
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      parkease-rabbitmq:
+        condition: service_healthy
+    networks:
+      - parkease-network
+
+  payment-service:
+    build: ./payment-service
+    container_name: payment-service
+    ports:
+      - "8086:8086"
+    env_file:
+      - ./payment-service/.env
+    environment:
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_payment?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - EUREKA_URL=http://discovery-service:8761/eureka/
+      - RABBITMQ_HOST=parkease-rabbitmq
+      - ADMIN_SERVER_URL=http://admin-server:9090
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      parkease-rabbitmq:
+        condition: service_healthy
+    networks:
+      - parkease-network
+
+  notification-service:
+    build: ./notification-service
+    container_name: notification-service
+    ports:
+      - "8087:8087"
+    env_file:
+      - ./notification-service/.env
+    environment:
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_notification?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - EUREKA_URL=http://discovery-service:8761/eureka/
+      - RABBITMQ_HOST=parkease-rabbitmq
+      - ADMIN_SERVER_URL=http://admin-server:9090
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      parkease-rabbitmq:
+        condition: service_healthy
+    networks:
+      - parkease-network
+
+  analytics-service:
+    build: ./analytics-service
+    container_name: analytics-service
+    ports:
+      - "8088:8088"
+    env_file:
+      - ./analytics-service/.env
+    environment:
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/parkease_analytics?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - EUREKA_URL=http://discovery-service:8761/eureka/
+      - ADMIN_SERVER_URL=http://admin-server:9090
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      parkease-rabbitmq:
+        condition: service_healthy
+    networks:
+      - parkease-network
+
+  # ──────────────────────────────────────────────
+  #  GATEWAY — starts after services
+  # ──────────────────────────────────────────────
+
+  gateway-service:
+    build: ./gateway-service
+    container_name: gateway-service
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./gateway-service/.env
+    environment:
+      - EUREKA_URL=http://discovery-service:8761/eureka/
+      - ADMIN_SERVER_URL=http://admin-server:9090
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      parkease-rabbitmq:
+        condition: service_healthy
+    networks:
+      - parkease-network
+
+  # ──────────────────────────────────────────────
+  #  ADMIN SERVER — Spring Boot Admin
+  # ──────────────────────────────────────────────
+
+  admin-server:
+    build: ./admin-server
+    container_name: admin-server
+    ports:
+      - "9090:9090"
+    env_file:
+      - ./admin-server/.env
+    environment:
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    networks:
+      - parkease-network
+
+# ──────────────────────────────────────────────
+#  NETWORKS
+# ──────────────────────────────────────────────
+
+networks:
+  parkease-network:
+    driver: bridge
