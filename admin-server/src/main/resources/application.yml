@@ -1,0 +1,20 @@
+server:
+  port: ${SERVER_PORT:9090}
+
+spring:
+  application:
+    name: admin-server
+  security:
+    user:
+      name: ${ADMIN_USERNAME}
+      password: ${ADMIN_PASSWORD}
+
+# Logging
+logging:
+  level:
+    com.parkease: DEBUG
+    de.codecentric: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/admin-server.log
