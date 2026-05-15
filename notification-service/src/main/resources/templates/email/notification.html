@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${title}">ParkEase Notification</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #0f0c09;
+            color: #f5f0eb;
+        }
+
+        .wrapper {
+            max-width: 600px;
+            margin: 48px auto;
+            background: #1a1410;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(200, 75, 47, 0.08);
+        }
+
+        /* ── HEADER ── */
+        .header {
+            background: linear-gradient(160deg, #2e1f14 0%, #3d2518 60%, #4a2c1a 100%);
+            padding: 40px 44px 36px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(200, 75, 47, 0.22), transparent 55%),
+                radial-gradient(circle at 20% 80%, rgba(180, 60, 30, 0.10), transparent 40%);
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        .header-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #c84b2f, #e8693a);
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.4rem;
+            box-shadow: 0 0 24px rgba(200, 75, 47, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            display: inline-block;
+        }
+
+        .header h1 {
+            font-family: 'Nunito', sans-serif;
+            color: #f5f0eb;
+            font-size: 1.85rem;
+            font-weight: 900;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+        }
+
+        .header p {
+            color: rgba(245, 240, 235, 0.55);
+            font-size: 0.87rem;
+            margin-top: 4px;
+            letter-spacing: 0.04em;
+        }
+
+        /* ── BODY ── */
+        .body {
+            padding: 40px 44px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(200, 75, 47, 0.12);
+            color: #e8693a;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: 1px solid rgba(200, 75, 47, 0.22);
+        }
+
+        .badge::before {
+            content: '●';
+            font-size: 0.55rem;
+        }
+
+        .notification-title {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #f5f0eb;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .notification-message {
+            font-size: 0.97rem;
+            line-height: 1.78;
+            color: #b8a99a;
+            background: #221c16;
+            border-left: 3px solid #c84b2f;
+            padding: 18px 22px;
+            border-radius: 0 14px 14px 0;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            white-space: pre-wrap;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            margin: 32px 0;
+        }
+
+        .meta-note {
+            font-size: 0.85rem;
+            color: #7a6a5a;
+            line-height: 1.75;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .meta-note::before {
+            content: 'ℹ  ';
+            font-size: 0.8rem;
+            color: #c84b2f;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            text-align: center;
+            padding: 22px 44px 30px;
+            background: #130f0b;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer p {
+            font-size: 0.78rem;
+            color: #4a3a2a;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-inner">
+                <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin-bottom: 10px;">
+                    <tr>
+                        <td style="vertical-align: middle; padding-right: 14px;">
+                            <div class="logo-badge">🅿</div>
+                        </td>
+                        <td style="vertical-align: middle;">
+                            <h1>ParkEase</h1>
+                        </td>
+                    </tr>
+                </table>
+                <p>Smart Parking Management Platform</p>
+            </div>
+        </div>
+
+        <!-- Body -->
+        <div class="body">
+            <div class="badge">Notification</div>
+
+            <div class="notification-title" th:text="${title}">
+                Notification Title
+            </div>
+
+            <div class="notification-message" th:text="${message}">
+                Notification message goes here. This is the main content of the notification that will be displayed to
+                the user.
+            </div>
+
+            <hr class="divider" />
+
+            <div class="meta-note">
+                This notification was sent by ParkEase automatically.
+                You can manage your notification preferences in the app settings.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; <span th:text="${year}">2026</span> ParkEase. All rights reserved.</p>
+        </div>
+
+    </div>
+</body>
+
+</html>
