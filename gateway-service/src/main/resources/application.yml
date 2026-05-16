@@ -1,12 +1,15 @@
 server:
   port: ${SERVER_PORT:8080}
-   forward-headers-strategy: framework
+  forward-headers-strategy: framework
 
 spring:
   application:
     name: gateway-service
   cloud:
     gateway:
+      server:
+        webflux:
+          trusted-proxies: ".*"
       discovery:
         locator:
           enabled: true
@@ -42,25 +45,25 @@ spring:
           uri: lb://auth-service
           predicates:
             - Path=/api/auth/**
-            
+
         # BOOKING SERVICE
         - id: booking-service
           uri: lb://booking-service
           predicates:
             - Path=/api/bookings/**
-            
+
         # PARKING LOT SERVICE
         - id: parkinglot-service
           uri: lb://parkinglot-service
           predicates:
             - Path=/api/lots/**
-            
+
         # PARKING SPOT SERVICE
         - id: parkingspot-service
           uri: lb://parkingspot-service
           predicates:
             - Path=/api/spots/**
-            
+
         # PAYMENT SERVICE
         - id: payment-service
           uri: lb://payment-service
@@ -72,31 +75,31 @@ spring:
           uri: lb://payment-service
           predicates:
             - Path=/api/pass/**
-            
+
         # VEHICLE SERVICE
         - id: vehicle-service
           uri: lb://vehicle-service
           predicates:
             - Path=/api/vehicles/**
-            
+
         # NOTIFICATION SERVICE
         - id: notification-service
           uri: lb://notification-service
           predicates:
             - Path=/api/notifications/**
-            
+
         # ANALYTICS SERVICE
         - id: analytics-service
           uri: lb://analytics-service
           predicates:
             - Path=/api/analytics/**
-            
+
         # ADMIN ENDPOINTS INSIDE AUTH SERVICE
         - id: admin-auth-routes
           uri: lb://auth-service
           predicates:
             - Path=/api/admin/**
-            
+
         # OAUTH2 ROUTES
         - id: oauth2-auth-routes
           uri: lb://auth-service
@@ -120,7 +123,6 @@ eureka:
     prefer-ip-address: true
     health-check-url-path: /actuator/health
 
-# Actuator
 management:
   endpoints:
     web:
@@ -128,4 +130,4 @@ management:
         include: "*"
   endpoint:
     health:
-      show-details: always
+      show-details: always 
