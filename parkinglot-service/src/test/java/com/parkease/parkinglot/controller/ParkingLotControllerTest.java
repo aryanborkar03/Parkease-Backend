@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.parkease.parkinglot.dto.request.ParkingLotRequestDTO;
 import com.parkease.parkinglot.dto.response.ParkingLotResponseDTO;
+import com.parkease.parkinglot.exception.GlobalExceptionHandler;
+import com.parkease.parkinglot.exception.ResourceNotFoundException;
+import com.parkease.parkinglot.exception.UnauthorizedException;
 import com.parkease.parkinglot.service.ParkingLotService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,7 +43,9 @@ class ParkingLotControllerTest {
 
     @BeforeEach
     void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(parkingLotController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(parkingLotController)
+                .setControllerAdvice(new GlobalExceptionHandler())
+                .build();
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
 
@@ -216,7 +221,8 @@ class ParkingLotControllerTest {
         doNothing().when(parkingLotService).decrementSpot(1L);
 
         mockMvc.perform(put("/api/lots/1/decrement"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message").value("Available spots decremented."));
     }
 
     @Test
@@ -224,6 +230,122 @@ class ParkingLotControllerTest {
         doNothing().when(parkingLotService).incrementSpot(1L);
 
         mockMvc.perform(put("/api/lots/1/increment"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message").value("Available spots incremented."));
+    }
+
+    // Update lot tests
+
+    @Test
+    void shouldUpdateLotSuccessfully() throws Exception {
+        ParkingLotRequestDTO req = new ParkingLotRequestDTO();
+        req.setName("Updated Lot");
+        req.setManagerName("Test Manager");
+        req.setAddress("New Address");
+        req.setCity("Mumbai");
+        req.setLatitude(19.076);
+        req.setLongitude(72.877);
+        req.setTotalSpots(120);
+
+        sampleLot.setName("Updated Lot");
+        when(parkingLotService.updateLot(eq(1L), any(ParkingLotRequestDTO.class), eq("manager@test.com")))
+                .thenReturn(sampleLot);
+
+        mockMvc.perform(put("/api/lots/1")
+                        .principal(managerAuth())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(req)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Updated Lot"));
+    }
+
+    // Delete lot tests
+
+    @Test
+    void shouldDeleteLotSuccessfully() throws Exception {
+        doNothing().when(parkingLotService).deleteLot(1L, "manager@test.com");
+
+        mockMvc.perform(delete("/api/lots/1")
+                        .principal(managerAuth()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message").value("Lot deleted successfully."));
+    }
+
+    // Nearby lots with optional filter params
+
+    @Test
+    void shouldReturnNearbyLotsWithFilters() throws Exception {
+        when(parkingLotService.getNearbyLots(anyDouble(), anyDouble(), anyDouble(), eq("CAR"), eq(true), eq(false)))
+                .thenReturn(List.of(sampleLot));
+
+        mockMvc.perform(get("/api/lots/nearby")
+                        .param("lat", "19.076")
+                        .param("lon", "72.877")
+                        .param("radius", "3.0")
+                        .param("vehicleType", "CAR")
+                        .param("isEv", "true")
+                        .param("isHandicapped", "false"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].lotId").value(1L));
+    }
+
+    // Lots by city with optional query params
+
+    @Test
+    void shouldReturnLotsByCityWithFilters() throws Exception {
+        when(parkingLotService.getByCity(eq("Mumbai"), eq("CAR"), eq(true), eq(true)))
+                .thenReturn(List.of(sampleLot));
+
+        mockMvc.perform(get("/api/lots/city/Mumbai")
+                        .param("vehicleType", "CAR")
+                        .param("isEv", "true")
+                        .param("isHandicapped", "true"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].city").value("Mumbai"));
+    }
+
+    // Empty results — service returns empty list
+
+    @Test
+    void shouldReturnEmptyListWhenNoOpenLots() throws Exception {
+        when(parkingLotService.getOpenLots()).thenReturn(List.of());
+
+        mockMvc.perform(get("/api/lots"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isEmpty());
+    }
+
+    @Test
+    void shouldReturnEmptyNearbyLots() throws Exception {
+        when(parkingLotService.getNearbyLots(anyDouble(), anyDouble(), anyDouble(), any(), any(), any()))
+                .thenReturn(List.of());
+
+        mockMvc.perform(get("/api/lots/nearby")
+                        .param("lat", "0.0")
+                        .param("lon", "0.0"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isEmpty());
+    }
+
+    @Test
+    void shouldReturn404WhenLotNotFound() throws Exception {
+        when(parkingLotService.getLotById(99L))
+                .thenThrow(new ResourceNotFoundException("Lot not found: 99"));
+
+        mockMvc.perform(get("/api/lots/99"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.message").value("Lot not found: 99"));
+    }
+
+    @Test
+    void shouldReturn500OnUnexpectedError() throws Exception {
+        when(parkingLotService.getOpenLots())
+                .thenThrow(new RuntimeException("DB connection lost"));
+
+        mockMvc.perform(get("/api/lots"))
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.success").value(false));
     }
 }
+

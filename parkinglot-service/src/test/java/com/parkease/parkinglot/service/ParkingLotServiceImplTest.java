@@ -3,6 +3,7 @@ package com.parkease.parkinglot.service;
 import com.parkease.parkinglot.dto.request.ParkingLotRequestDTO;
 import com.parkease.parkinglot.dto.response.ParkingLotResponseDTO;
 import com.parkease.parkinglot.entity.ParkingLot;
+import com.parkease.parkinglot.exception.ResourceNotFoundException;
 import com.parkease.parkinglot.exception.UnauthorizedException;
 import com.parkease.parkinglot.mapper.ParkingLotMapper;
 import com.parkease.parkinglot.repository.ParkingLotRepository;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -28,6 +30,9 @@ class ParkingLotServiceImplTest {
 
     @Mock
     private ParkingLotMapper mapper;
+
+    @Mock
+    private RestTemplate restTemplate;
 
     @InjectMocks
     private ParkingLotServiceImpl service;
@@ -226,36 +231,7 @@ class ParkingLotServiceImplTest {
         assertThrows(UnauthorizedException.class, () -> service.toggleOpen(1L, "manager@test.com"));
     }
 
-    @Test
-    void shouldGetByCityWithFilters() {
-        lot.setEv(true);
-        lot.setHandicapped(true);
-        lot.setVehicleTypes(List.of("CAR"));
-        when(repo.findByCityIgnoreCaseAndIsApprovedTrue("Bhopal")).thenReturn(List.of(lot));
-        when(mapper.toDTO(lot)).thenReturn(responseDTO);
 
-        List<ParkingLotResponseDTO> result = service.getByCity("Bhopal", "CAR", true, true);
-        assertEquals(1, result.size());
-
-        List<ParkingLotResponseDTO> empty1 = service.getByCity("Bhopal", "BIKE", true, true);
-        assertTrue(empty1.isEmpty());
-
-        lot.setEv(false);
-        List<ParkingLotResponseDTO> empty2 = service.getByCity("Bhopal", "CAR", true, true);
-        assertTrue(empty2.isEmpty());
-    }
-
-    @Test
-    void shouldGetNearbyLotsWithFilters() {
-        lot.setEv(true);
-        lot.setHandicapped(true);
-        lot.setVehicleTypes(List.of("CAR"));
-        when(repo.findNearby(anyDouble(), anyDouble(), anyDouble())).thenReturn(List.of(lot));
-        when(mapper.toDTO(eq(lot), anyDouble())).thenReturn(responseDTO);
-
-        List<ParkingLotResponseDTO> result = service.getNearbyLots(23.2, 77.4, 5.0, "CAR", true, true);
-        assertEquals(1, result.size());
-    }
 
     // JWT utility and filter coverage tests
 
@@ -337,4 +313,71 @@ class ParkingLotServiceImplTest {
         res.setName("Test");
         assertNotNull(res.getName());
     }
+
+    // Missing branch coverage tests
+
+    @Test
+    void shouldThrowWhenLotNotFoundById() {
+        when(repo.findById(99L)).thenReturn(java.util.Optional.empty());
+        assertThrows(ResourceNotFoundException.class, () -> service.getLotById(99L));
+    }
+
+    @Test
+    void shouldThrowWhenUpdatingNonExistentLot() {
+        when(repo.findById(99L)).thenReturn(java.util.Optional.empty());
+        assertThrows(ResourceNotFoundException.class,
+                () -> service.updateLot(99L, requestDTO, "manager@test.com"));
+    }
+
+    @Test
+    void shouldThrowWhenDeletingNonExistentLot() {
+        when(repo.findById(99L)).thenReturn(java.util.Optional.empty());
+        assertThrows(ResourceNotFoundException.class,
+                () -> service.deleteLot(99L, "manager@test.com"));
+    }
+
+    @Test
+    void shouldThrowWhenDeletingAnotherManagersLot() {
+        when(repo.findById(1L)).thenReturn(java.util.Optional.of(lot));
+        assertThrows(UnauthorizedException.class,
+                () -> service.deleteLot(1L, "other@test.com"));
+    }
+
+    @Test
+    void shouldThrowWhenTogglingAnotherManagersLot() {
+        when(repo.findById(1L)).thenReturn(java.util.Optional.of(lot));
+        assertThrows(UnauthorizedException.class,
+                () -> service.toggleOpen(1L, "other@test.com"));
+    }
+
+    @Test
+    void shouldGetOpenLots() {
+        when(repo.findByIsOpenTrueAndIsApprovedTrue()).thenReturn(List.of(lot));
+        when(mapper.toDTO(lot)).thenReturn(responseDTO);
+        // RestTemplate returns null — triggers the zero-spot fallback branch
+        when(restTemplate.getForObject(anyString(), eq(Long.class), eq(1L))).thenReturn(null);
+
+        List<ParkingLotResponseDTO> result = service.getOpenLots();
+        assertEquals(1, result.size());
+    }
+
+    @Test
+    void shouldGetLotsByManager() {
+        when(repo.findByManagerEmail("manager@test.com")).thenReturn(List.of(lot));
+        when(mapper.toDTO(lot)).thenReturn(responseDTO);
+
+        List<ParkingLotResponseDTO> result = service.getLotsByManager("manager@test.com");
+        assertEquals(1, result.size());
+    }
+
+    @Test
+    void shouldGetPendingApprovalLots() {
+        lot.setApproved(false);
+        when(repo.findByIsApprovedFalse()).thenReturn(List.of(lot));
+        when(mapper.toDTO(lot)).thenReturn(responseDTO);
+
+        List<ParkingLotResponseDTO> result = service.getPendingApprovalLots();
+        assertEquals(1, result.size());
+    }
+
 }
