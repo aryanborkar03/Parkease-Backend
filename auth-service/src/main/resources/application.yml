@@ -37,7 +37,7 @@ spring:
             client-id: ${OAUTH_CLIENT_ID}
             client-secret: ${OAUTH_CLIENT_SECRET}
             scope: email,profile
-            redirect-uri: "https://app-13-60-173-115.nip.io/login/oauth2/code/{registrationId}"
+            redirect-uri: "https://app-13-60-173-115.nip.io/login/oauth2/code/{registrationId}" 
   boot:
     admin:
       client:
