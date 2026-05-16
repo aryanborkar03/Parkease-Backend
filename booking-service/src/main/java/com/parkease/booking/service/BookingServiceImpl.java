@@ -599,28 +599,28 @@ public class BookingServiceImpl implements BookingService {
 
     /**
      * Validates that the vehicle belongs to the authenticated user.
-     * Throws IllegalArgumentException if validation fails.
+     * Throws BookingException if validation fails.
      */
     private void validateVehicleOwnership(Long vehicleId, String driverEmail) {
         if (vehicleId == null) {
-            throw new IllegalArgumentException("Vehicle ID is required.");
+            throw new BookingException("Vehicle ID is required.");
         }
         try {
             Map<String, Object> vehicle = vehicleServiceClient.getVehicleById(vehicleId);
             if (vehicle == null) {
-                throw new IllegalArgumentException("Vehicle not found: " + vehicleId);
+                throw new BookingException("Vehicle not found: " + vehicleId);
             }
             Object ownerObj = vehicle.get("ownerEmail");
             String ownerEmail = ownerObj != null ? ownerObj.toString() : null;
             if (ownerEmail == null || !driverEmail.equalsIgnoreCase(ownerEmail)) {
-                throw new IllegalArgumentException("Vehicle does not belong to current user.");
+                throw new BookingException("Vehicle does not belong to current user.");
             }
             // Check isActive - could be Boolean or boolean
             Object activeObj = vehicle.get("isActive");
             if (activeObj != null && activeObj instanceof Boolean && !(Boolean) activeObj) {
-                throw new IllegalArgumentException("Vehicle is deactivated.");
+                throw new BookingException("Vehicle is deactivated.");
             }
-        } catch (IllegalArgumentException e) {
+        } catch (BookingException e) {
             throw e;
         } catch (Exception e) {
             log.warn("Could not validate vehicle ownership for {}: {}", vehicleId, e.getMessage());
