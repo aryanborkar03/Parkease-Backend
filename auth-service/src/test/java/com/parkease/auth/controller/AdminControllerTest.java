@@ -36,7 +36,10 @@ class AdminControllerTest {
 
     @BeforeEach
     void setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mvc = MockMvcBuilders
+                .standaloneSetup(controller)
+                .setControllerAdvice(new com.parkease.auth.exception.GlobalExceptionHandler())
+                .build();
 
         user = User.builder()
                 .id(1L).fullName("Test User").email("test@test.com")
@@ -140,5 +143,40 @@ class AdminControllerTest {
         mvc.perform(delete("/api/admin/users/1"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.success").value(false));
+    }
+
+    // Not-found paths — ResourceNotFoundException → 404
+
+    @Test
+    void getUserById_shouldReturn404WhenNotFound() throws Exception {
+        when(userRepository.findById(99L)).thenReturn(Optional.empty());
+
+        mvc.perform(get("/api/admin/users/99"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.success").value(false));
+    }
+
+    @Test
+    void suspendUser_shouldReturn404WhenNotFound() throws Exception {
+        when(userRepository.findById(99L)).thenReturn(Optional.empty());
+
+        mvc.perform(put("/api/admin/users/99/suspend"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void activateUser_shouldReturn404WhenNotFound() throws Exception {
+        when(userRepository.findById(99L)).thenReturn(Optional.empty());
+
+        mvc.perform(put("/api/admin/users/99/activate"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void deleteUser_shouldReturn404WhenNotFound() throws Exception {
+        when(userRepository.findById(99L)).thenReturn(Optional.empty());
+
+        mvc.perform(delete("/api/admin/users/99"))
+                .andExpect(status().isNotFound());
     }
 }

@@ -5,6 +5,7 @@ import com.parkease.auth.dto.request.*;
 import com.parkease.auth.dto.response.AuthResponse;
 import com.parkease.auth.dto.response.UserResponse;
 import com.parkease.auth.entity.Role;
+import com.parkease.auth.exception.*;
 import com.parkease.auth.service.AuthService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,7 +39,10 @@ class AuthControllerTest {
 
     @BeforeEach
     void setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mvc = MockMvcBuilders
+                .standaloneSetup(controller)
+                .setControllerAdvice(new com.parkease.auth.exception.GlobalExceptionHandler())
+                .build();
 
         authResponse = AuthResponse.builder()
                 .accessToken("access_token")
@@ -158,7 +162,7 @@ class AuthControllerTest {
     // DTO and entity field coverage tests
 
     @Test
-    void testDTOsAndEntities() {
+    void testDTOs_coverBuilder() {
         AuthResponse ar = AuthResponse.builder()
                 .accessToken("a")
                 .refreshToken("b")
@@ -212,5 +216,124 @@ class AuthControllerTest {
         assertNotNull(u.toString());
         u.setFullName("fn2");
         assertEquals("fn2", u.getFullName());
+    }
+
+    // ── Additional coverage: error paths and missing endpoints ───────────────
+
+    @Test
+    void verifyOtp_shouldReturn200() throws Exception {
+        VerifyOtpRequest req = new VerifyOtpRequest();
+        req.setEmail("test@test.com");
+        req.setOtp("123456");
+
+        doNothing().when(authService).verifyOtp(any(VerifyOtpRequest.class));
+
+        mvc.perform(post("/api/auth/verify-otp")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(req)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.message").value("OTP is valid."));
+    }
+
+    @Test
+    void verifyOtp_shouldReturn401WhenOtpInvalid() throws Exception {
+        VerifyOtpRequest req = new VerifyOtpRequest();
+        req.setEmail("test@test.com");
+        req.setOtp("000000");
+
+        doThrow(new com.parkease.auth.exception.InvalidTokenException("OTP invalid."))
+                .when(authService).verifyOtp(any(VerifyOtpRequest.class));
+
+        mvc.perform(post("/api/auth/verify-otp")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(req)))
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.success").value(false));
+    }
+
+    @Test
+    void register_shouldReturn409WhenEmailAlreadyExists() throws Exception {
+        RegisterRequest req = new RegisterRequest();
+        req.setFullName("Test");
+        req.setEmail("test@test.com");
+        req.setPassword("Password@123");
+        req.setRole(Role.DRIVER);
+
+        when(authService.register(any()))
+                .thenThrow(new com.parkease.auth.exception.EmailAlreadyExistsException("Email already registered."));
+
+        mvc.perform(post("/api/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(req)))
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.success").value(false));
+    }
+
+    @Test
+    void login_shouldReturn401WhenBadCredentials() throws Exception {
+        LoginRequest req = new LoginRequest();
+        req.setEmail("test@test.com");
+        req.setPassword("wrong");
+
+        when(authService.login(any()))
+                .thenThrow(new com.parkease.auth.exception.BadCredentialsException("Invalid credentials."));
+
+        mvc.perform(post("/api/auth/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(req)))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void resetPassword_shouldReturn401WhenTokenInvalid() throws Exception {
+        ResetPasswordRequest req = new ResetPasswordRequest();
+        req.setEmail("test@test.com");
+        req.setOtp("bad_otp");
+        req.setNewPassword("Password@123");
+
+        doThrow(new com.parkease.auth.exception.InvalidTokenException("OTP invalid or expired."))
+                .when(authService).resetPassword(any());
+
+        mvc.perform(post("/api/auth/reset-password")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(req)))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void refresh_shouldReturn401WhenTokenExpired() throws Exception {
+        RefreshTokenRequest req = new RefreshTokenRequest();
+        req.setRefreshToken("expired_token");
+
+        when(authService.refreshToken(any()))
+                .thenThrow(new com.parkease.auth.exception.InvalidTokenException("Refresh token expired."));
+
+        mvc.perform(post("/api/auth/refresh")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(req)))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void register_shouldReturn400WhenRequestBodyInvalid() throws Exception {
+        // Empty JSON — all @NotBlank/@NotNull fields missing → 400 validation error
+        mvc.perform(post("/api/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void forgotPassword_shouldReturn200AlwaysForSecurity() throws Exception {
+        ForgotPasswordRequest req = new ForgotPasswordRequest();
+        req.setEmail("unknown@test.com");
+        doNothing().when(authService).forgotPassword(any());
+
+        mvc.perform(post("/api/auth/forgot-password")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(req)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message").value("If that email is registered, an OTP has been sent."));
     }
 }

@@ -207,7 +207,7 @@ class AuthServiceImplTest {
         service.resetPassword(req);
 
         verify(userRepository).save(user);
-        verify(passwordResetTokenRepository).save(any());
+        verify(passwordResetTokenRepository).delete(any());
     }
 
     @Test
@@ -319,5 +319,140 @@ class AuthServiceImplTest {
         when(userRepository.findByEmail("unknown@test.com")).thenReturn(Optional.empty());
 
         assertThrows(ResourceNotFoundException.class, () -> service.logout("unknown@test.com"));
+    }
+
+    // ── Hardcoded admin login path (enableDefaultAdmin = true) ────────────────
+
+    @Test
+    void shouldLoginWithHardcodedAdminWhenEnabled() {
+        org.springframework.test.util.ReflectionTestUtils.setField(service, "enableDefaultAdmin", true);
+
+        LoginRequest req = new LoginRequest();
+        req.setEmail("admin@parkease.com");
+        req.setPassword("Admin@123");
+
+        User adminUser = User.builder()
+                .id(0L)
+                .email("admin@parkease.com")
+                .fullName("Admin")
+                .role(Role.ADMIN)
+                .active(true)
+                .build();
+
+        when(jwtUtil.generateToken("admin@parkease.com", "ADMIN")).thenReturn("admin_access");
+        when(refreshTokenService.createRefreshToken(any(User.class))).thenReturn(
+                RefreshToken.builder().token("admin_refresh").user(adminUser).build());
+
+        AuthResponse response = service.login(req);
+
+        assertNotNull(response);
+        assertEquals("admin_access", response.getAccessToken());
+        assertEquals(Role.ADMIN, response.getRole());
+        // AuthenticationManager must NOT be called for hardcoded admin
+        verify(authenticationManager, never()).authenticate(any());
+    }
+
+    @Test
+    void shouldNotUseHardcodedAdminWhenFlagDisabled() {
+        // enableDefaultAdmin stays false (default in setUp)
+        LoginRequest req = new LoginRequest();
+        req.setEmail("admin@parkease.com");
+        req.setPassword("Admin@123");
+
+        when(authenticationManager.authenticate(any())).thenReturn(null);
+        when(userRepository.findByEmail("admin@parkease.com")).thenReturn(Optional.of(user));
+        when(jwtUtil.generateToken(anyString(), anyString())).thenReturn("normal_access");
+        when(refreshTokenService.createRefreshToken(any())).thenReturn(refreshToken);
+
+        // Must go through normal flow since flag is false
+        AuthResponse response = service.login(req);
+        verify(authenticationManager).authenticate(any());
+        assertNotNull(response);
+    }
+
+    @Test
+    void shouldThrowWhenSuspendedUserPasswordWrong() {
+        LoginRequest req = new LoginRequest();
+        req.setEmail("aryan@test.com");
+        req.setPassword("WrongPass");
+
+        doThrow(new org.springframework.security.authentication.DisabledException("disabled"))
+                .when(authenticationManager).authenticate(any());
+        when(userRepository.findByEmail("aryan@test.com")).thenReturn(Optional.of(user));
+        when(passwordEncoder.matches("WrongPass", user.getPassword())).thenReturn(false);
+
+        assertThrows(BadCredentialsException.class, () -> service.login(req));
+    }
+
+    // ── verifyOtp branches ────────────────────────────────────────────────────
+
+    @Test
+    void shouldVerifyOtpSuccessfully() {
+        PasswordResetToken token = PasswordResetToken.builder()
+                .otp("123456")
+                .user(user)
+                .expiresAt(LocalDateTime.now().plusMinutes(5))
+                .used(false)
+                .build();
+
+        VerifyOtpRequest req = new VerifyOtpRequest();
+        req.setEmail(user.getEmail());
+        req.setOtp("123456");
+
+        when(passwordResetTokenRepository.findByUser_Email(user.getEmail()))
+                .thenReturn(Optional.of(token));
+
+        // Should not throw
+        assertDoesNotThrow(() -> service.verifyOtp(req));
+    }
+
+    @Test
+    void shouldThrowWhenOtpInvalid() {
+        PasswordResetToken token = PasswordResetToken.builder()
+                .otp("123456")
+                .user(user)
+                .expiresAt(LocalDateTime.now().plusMinutes(5))
+                .used(false)
+                .build();
+
+        VerifyOtpRequest req = new VerifyOtpRequest();
+        req.setEmail(user.getEmail());
+        req.setOtp("000000"); // wrong OTP
+
+        when(passwordResetTokenRepository.findByUser_Email(user.getEmail()))
+                .thenReturn(Optional.of(token));
+
+        assertThrows(InvalidTokenException.class, () -> service.verifyOtp(req));
+    }
+
+    @Test
+    void shouldThrowWhenOtpExpired() {
+        PasswordResetToken token = PasswordResetToken.builder()
+                .otp("123456")
+                .user(user)
+                .expiresAt(LocalDateTime.now().minusMinutes(1)) // expired
+                .used(false)
+                .build();
+
+        VerifyOtpRequest req = new VerifyOtpRequest();
+        req.setEmail(user.getEmail());
+        req.setOtp("123456");
+
+        when(passwordResetTokenRepository.findByUser_Email(user.getEmail()))
+                .thenReturn(Optional.of(token));
+
+        assertThrows(InvalidTokenException.class, () -> service.verifyOtp(req));
+    }
+
+    @Test
+    void shouldThrowWhenVerifyOtpTokenNotFound() {
+        VerifyOtpRequest req = new VerifyOtpRequest();
+        req.setEmail("unknown@test.com");
+        req.setOtp("123456");
+
+        when(passwordResetTokenRepository.findByUser_Email("unknown@test.com"))
+                .thenReturn(Optional.empty());
+
+        assertThrows(InvalidTokenException.class, () -> service.verifyOtp(req));
     }
 }
