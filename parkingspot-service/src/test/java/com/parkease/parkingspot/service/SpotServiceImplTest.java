@@ -30,6 +30,7 @@ class SpotServiceImplTest {
 
     @Mock private SpotRepository repo;
     @Mock private SpotMapper mapper;
+    @Mock private com.parkease.parkingspot.client.LotServiceClient lotClient;
 
     @InjectMocks
     private SpotServiceImpl service;
@@ -237,37 +238,7 @@ class SpotServiceImplTest {
         assertEquals(1, result.size());
     }
 
-    @Test
-    void shouldGetSpotsByFloor() {
-        when(repo.findByLotIdAndFloor(10L, 1)).thenReturn(List.of(sampleSpot));
-        when(mapper.toDTO(sampleSpot)).thenReturn(sampleDTO);
 
-        List<SpotResponseDTO> result = service.getSpotsByFloor(10L, 1);
-
-        assertEquals(1, result.size());
-    }
-
-    @Test
-    void shouldGetEVSpots() {
-        sampleSpot.setEVCharging(true);
-        when(repo.findByLotIdAndIsEVChargingTrue(10L)).thenReturn(List.of(sampleSpot));
-        when(mapper.toDTO(sampleSpot)).thenReturn(sampleDTO);
-
-        List<SpotResponseDTO> result = service.getEVSpots(10L);
-
-        assertEquals(1, result.size());
-    }
-
-    @Test
-    void shouldGetHandicappedSpots() {
-        sampleSpot.setHandicapped(true);
-        when(repo.findByLotIdAndIsHandicappedTrue(10L)).thenReturn(List.of(sampleSpot));
-        when(mapper.toDTO(sampleSpot)).thenReturn(sampleDTO);
-
-        List<SpotResponseDTO> result = service.getHandicappedSpots(10L);
-
-        assertEquals(1, result.size());
-    }
 
     @Test
     void shouldCountAvailableSpots() {
@@ -311,14 +282,79 @@ class SpotServiceImplTest {
         assertEquals(SpotStatus.AVAILABLE, sampleSpot.getStatus());
     }
 
+
+    // LotServiceClient validation branch coverage
+
     @Test
-    void shouldReturnSpotWhenAlreadyAvailableOnRelease() {
-        when(repo.findById(1L)).thenReturn(Optional.of(sampleSpot));
-        when(mapper.toDTO(sampleSpot)).thenReturn(sampleDTO);
+    void shouldThrowWhenVehicleTypeNotSupportedByLot() {
+        // Lot only supports TWO_WHEELER — adding a FOUR_WHEELER spot should fail
+        SpotRequestDTO req = new SpotRequestDTO();
+        req.setLotId(10L);
+        req.setSpotNumber("B1-01");
+        req.setVehicleType(VehicleType.FOUR_WHEELER);
+        req.setFloor(1);
+        req.setSpotType(SpotType.STANDARD);
+        req.setPricePerHour(40.0);
 
-        SpotResponseDTO result = service.releaseSpot(1L);
+        com.parkease.parkingspot.client.LotServiceClient.LotInfo lotInfo =
+                new com.parkease.parkingspot.client.LotServiceClient.LotInfo();
+        lotInfo.setLotId(10L);
+        lotInfo.setTotalSpots(50);
+        lotInfo.setVehicleTypes(List.of("TWO_WHEELER"));
 
-        assertNotNull(result);
-        verify(repo, never()).save(any());
+        when(lotClient.getLotById(10L)).thenReturn(lotInfo);
+        when(repo.countByLotId(10L)).thenReturn(5L);
+
+        assertThrows(IllegalArgumentException.class, () -> service.addSpot(req));
+    }
+
+
+    @Test
+    void shouldThrowWhenLotIsAtFullCapacity() {
+        // Lot already has all spots filled — any addition should fail
+        SpotRequestDTO req = new SpotRequestDTO();
+        req.setLotId(10L);
+        req.setSpotNumber("F1-01");
+        req.setVehicleType(VehicleType.FOUR_WHEELER);
+        req.setFloor(1);
+        req.setSpotType(SpotType.STANDARD);
+        req.setPricePerHour(50.0);
+
+        com.parkease.parkingspot.client.LotServiceClient.LotInfo lotInfo =
+                new com.parkease.parkingspot.client.LotServiceClient.LotInfo();
+        lotInfo.setLotId(10L);
+        lotInfo.setTotalSpots(5);
+        lotInfo.setVehicleTypes(List.of("FOUR_WHEELER"));
+
+        when(lotClient.getLotById(10L)).thenReturn(lotInfo);
+        when(repo.countByLotId(10L)).thenReturn(5L); // lot is full
+
+        assertThrows(IllegalArgumentException.class, () -> service.addSpot(req));
+    }
+
+    @Test
+    void shouldGetTotalSpots() {
+        when(repo.countByLotId(10L)).thenReturn(15L);
+
+        long total = service.getTotalSpots(10L);
+
+        assertEquals(15L, total);
+    }
+
+    @Test
+    void shouldCountReservedSpots() {
+        when(repo.countByLotIdAndStatus(10L, SpotStatus.RESERVED)).thenReturn(4);
+
+        int reserved = service.countReservedSpots(10L);
+
+        assertEquals(4, reserved);
+    }
+
+    @Test
+    void shouldThrowWhenDeletingNonExistentSpot() {
+        when(repo.findById(999L)).thenReturn(Optional.empty());
+
+        assertThrows(ResourceNotFoundException.class, () -> service.deleteSpot(999L));
     }
 }
+

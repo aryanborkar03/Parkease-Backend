@@ -11,9 +11,6 @@ import com.parkease.parkingspot.entity.SpotStatus;
 public class SpotMapper {
 
     public ParkingSpot toEntity(SpotRequestDTO dto) {
-        // Derive isEVCharging from spotType (EV spotType means EV charging)
-        boolean isEv = dto.getSpotType() != null && "EV".equals(dto.getSpotType().name());
-
         return ParkingSpot.builder()
                 .lotId(dto.getLotId())
                 .spotNumber(dto.getSpotNumber())
@@ -21,8 +18,8 @@ public class SpotMapper {
                 .spotType(dto.getSpotType())
                 .vehicleType(dto.getVehicleType())
                 .status(SpotStatus.AVAILABLE)
-                .isEVCharging(isEv)
-                .isHandicapped(false) // Default to false since per-spot handicap is not used
+                .isEVCharging(dto.isEVCharging())
+                .isHandicapped(dto.isHandicapped())
                 .pricePerHour(dto.getPricePerHour())
                 .build();
     }
